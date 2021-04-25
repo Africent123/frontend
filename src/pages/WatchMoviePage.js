@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import decode from "jwt-decode";
 import {
   MDBRow,
@@ -14,15 +13,16 @@ import {
 import FooterLink from "./../components/FooterLink";
 import MovietabsPage from "./../components/MovietabsPage";
 import MoviecatagorisNavPage from "./../components/MoviecatagorisNavPage";
+import axiosIntance from "../helpers/axios";
 
 class WatchMoviePage extends React.Component {
   componentDidMount() {
     const { movie } = this.props.location.state;
-    console.log(movie);
-    console.log(this.refs.player);
+    //console.log(movie);
+    //console.log(this.refs.player);
     const token = localStorage.getItem("token");
     const payload = decode(token);
-    console.log(payload);
+    //console.log(payload);
   }
   // handleDelete = e => {
   //   console.log(this.refs.player.play())
@@ -32,24 +32,24 @@ class WatchMoviePage extends React.Component {
     const token = localStorage.getItem("token");
     const payload = decode(token);
     const { movie } = this.props.location.state;
-    console.log(payload.userId);
-    console.log(movie._id);
+    //console.log(payload.userId);
+    //console.log(movie._id);
     const userId = payload.userId;
     const movieId = movie._id;
 
-    axios
-      .put(`https://kannywoodtv.live/api/movies/views/${movieId}`)
+    axiosIntance
+      .put(`/api/files/movies/views/${movieId}`)
       .then(result => {
-        console.log(result);
+        //console.log(result);
       })
       .catch(err => {
         console.log(err);
       });
 
-    axios
-      .post("https://kannywoodtv.live/api/watched", { userId, movieId })
+      axiosIntance
+      .post(`/api/files/watched`, { userId, movieId })
       .then(result => {
-        console.log(result);
+        //console.log(result);
       })
       .catch(err => {
         console.log(err);
@@ -58,18 +58,20 @@ class WatchMoviePage extends React.Component {
 
   render() {
     const { movie } = this.props.location.state;
+    //console.log(movie);
     return (
       <>
-        <MDBContainer className="pt-4">
+        <MDBContainer className="pt-0">
           {
             ///http://localhost:3000/moviecategory link to MoviecatagorisPage with MoviecatagorisNav added
           }
           <MoviecatagorisNavPage title="MoviecatagorisNavPage" />
-          <video className="video-fluid" loop controls>
-            <source
-              src={`https://kannywoodtv.live/api/files/${movie.filename}`}
-            />
-          </video>
+            <video className="video-fluid" style={{width:"100%", height:"450px"}} loop controls plays-inline="true">
+              <source
+                src={`/api/files/${movie.filename}`}
+                type="video/mp4"
+              />
+            </video>
           <MDBRow>
             <MovietabsPage title="MovietabsPage" movie={movie} />
             {/*Required field to use the tabs section under the movie*/}

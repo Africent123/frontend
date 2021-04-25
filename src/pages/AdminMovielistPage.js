@@ -9,20 +9,21 @@ import {
   MDBCardText,
   MDBCardTitle
 } from "mdbreact";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FooterLink from "./../components/FooterLink";
 import MovielistNavPage from "./../components/MovielistNavPage";
 import AdminSidenavPage from "./../components/AdminSidenavPage";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchingMovies } from "../Redux/Action/MoviesActions";
+import axiosIntance from "../helpers/axios";
 
 class AdminMovielistPage extends React.Component {
   componentDidMount() {
     this.props.actions
       .Movies()
       .then(data => {
-        console.log(data, "Redux");
+        //console.log(data, "Redux");
       })
       .catch(err => {
         console.log(err);
@@ -55,7 +56,7 @@ class AdminMovielistPage extends React.Component {
                       <MDBCard
                         className="movielist-cards"
                         onClick={() => {
-                          console.log("pressed");
+                          //console.log("pressed");
                         }}
                       >
                         <Link
@@ -67,7 +68,7 @@ class AdminMovielistPage extends React.Component {
                           <MDBCardImage
                             className="img-fluid"
                             style={imgStyle}
-                            src={`https://kannywoodtv.live/api/files/thumbnail/${movie.thumbnail}`}
+                            src={`/api/files/thumbnail/${movie.thumbnail}`}
                             waves
                           />
                           <MDBCardBody>

@@ -41,9 +41,9 @@ class LoginPage extends React.Component {
     }
     try {
       const payload = decode(token);
-      console.log(payload);
+      //console.log(payload);
       if (payload.exp < Date.now() / 1000) {
-        console.log(payload.exp);
+        //console.log(payload.exp);
         return false;
       } else {
         return true;
@@ -63,9 +63,9 @@ class LoginPage extends React.Component {
     this.props.actions
       .login({ body }, "user")
       .then(response => {
-        console.log(response.message.data.success, "ooo");
+        //console.log(response.message.data.success, "ooo");
         if (response.message.data.success) {
-          console.log(response.message.data.success, "---d");
+          //console.log(response.message.data.success, "---d");
           this.setState({ loading: false });
           // toast.success("Authenticated")
           if (
@@ -86,7 +86,7 @@ class LoginPage extends React.Component {
             toast.error("Your account is blocked contact the Administrator");
           }
         } else {
-          console.log(response);
+          //console.log(response);
           toast.error("Incorrect login credentials");
         }
       })
@@ -136,8 +136,8 @@ class LoginPage extends React.Component {
                       disabled={this.state.loading}
                     >
                       {this.state.loading && (
-                        <div class="spinner-border" role="status">
-                          <span class="sr-only">Loading...</span>
+                        <div className="spinner-border" role="status">
+                          <span className="sr-only">Loading...</span>
                         </div>
                       )}
                       Login

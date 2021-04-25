@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBDataTable, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBDataTable, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import SidenavPage from "./../components/SidenavPage";
 
 

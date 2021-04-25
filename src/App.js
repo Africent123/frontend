@@ -16,7 +16,7 @@ class App extends Component {
     }
     try {
       const payload = decode(token);
-      console.log(payload, "payload here");
+      //console.log(payload, "payload here");
       if (payload.exp < Date.now() / 1000) {
         return false;
       } else {
@@ -30,15 +30,15 @@ class App extends Component {
 
   componentDidMount() {
     let getToken = localStorage.getItem("token");
-    console.log(getToken, "is null");
+    //console.log(getToken, "is null");
   }
 
   render() {
     // this.props.Authenticated(payload);
-    console.log(this.checkAuth(), "isAuth");
+    //console.log(this.checkAuth(), "isAuth");
     const isAuth = this.checkAuth();
 
-    console.log(this.props, "here");
+    //console.log(this.props, "here");
     return (
       <>
         <AppContainer authenticated={{ ...this.props.authenticated, isAuth }} />
@@ -50,7 +50,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   let getToken = localStorage.getItem("token");
-  console.log(getToken);
+  //console.log(getToken);
 
   return {
     authenticated: payload

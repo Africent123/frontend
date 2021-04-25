@@ -1,7 +1,6 @@
 import React from "react";
 import {
   MDBCol,
-  MDBMedia,
   MDBContainer,
   MDBRow,
   MDBCarousel,
@@ -20,8 +19,6 @@ import {
 import "./HomePage.css";
 import FooterLink from "./../components/FooterLink";
 import TabsPage from "./../components/TabsPage";
-
-import ProgressBar from "react-bootstrap/ProgressBar";
 
 class HomePage extends React.Component {
   render() {
@@ -58,6 +55,7 @@ class HomePage extends React.Component {
                     color=""
                     className="btn bg-success slider-btn "
                     size="md"
+                    to="/admin/movies"
                   >
                     Watch Now
                   </MDBBtn>

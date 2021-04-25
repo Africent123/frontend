@@ -58,9 +58,9 @@ class AppContainer extends React.Component {
     }
     try {
       const payload = decode(token);
-      console.log(payload);
+      //console.log(payload);
       if (payload.exp < Date.now() / 1000) {
-        console.log(payload);
+        //console.log(payload);
         return false;
       } else {
         this.props.Authenticated(payload);
@@ -77,11 +77,11 @@ class AppContainer extends React.Component {
     this.prop.history.push("/login");
   }
   render() {
-    console.log(this.state.NavBar, "Navbar toggler")
+    //console.log(this.state.NavBar, "Navbar toggler")
     const isAuth = this.checkAuth();
     const { collapseID } = this.state;
-    console.log(this.props.authenticated, "hello world");
-    console.log(isAuth);
+    //console.log(this.props.authenticated, "hello world");
+    //console.log(isAuth);
     const overlay = (
       <div
         id="sidenav-overlay"

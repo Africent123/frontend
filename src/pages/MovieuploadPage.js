@@ -1,11 +1,11 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBFileInput } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn} from "mdbreact";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import axios from "axios";
 import decode from "jwt-decode";
 import FooterLink from "./../components/FooterLink";
 import SidenavPage from "./../components/SidenavPage";
 import {toast} from "react-toastify"
+import axiosIntance from "../helpers/axios";
 
 class MovieuploadPage extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class MovieuploadPage extends React.Component {
     const payload = decode(token);
     const uploadedByUser = payload.userId;
     this.setState({ user: payload.userId });
-    console.log(this.state.user);
+    //console.log(this.state.user);
   }
 
   onChange = e => {
@@ -56,7 +56,7 @@ class MovieuploadPage extends React.Component {
       }
     });
     this.setState({loading: true})
-    axios.post(`https://kannywoodtv.live/api/upload`, formdata, {
+    axiosIntance.post(`/api/upload/movies`, formdata, {
       headers: {
         "Content-Type": `multipart/form-data; boundary=${formdata._boundary}`
       },
@@ -69,7 +69,7 @@ class MovieuploadPage extends React.Component {
         }
       }
     }).then((result) => {
-      console.log(result)
+      //console.log(result)
     }).catch(err => {
       console.log(err)
     })

@@ -32,7 +32,7 @@ onSubmit = e => {
     const userData = { providerName, email, phoneNumber, password, password2 };
     this.props.actions.register(userData)
       .then(response => {
-        console.log(response.data.data, "here test")
+        //console.log(response.data.data, "here test")
         if (response.data.data.success) {
           this.setState({ loading: false });
           toast.success(response.data.data.message);
@@ -43,12 +43,12 @@ onSubmit = e => {
                 toast.error(response.data.data.message[message]);
               })
             : toast.error(response.data.data.message);
-          console.log(response)
+          //console.log(response)
         }
-        console.log(response.data.data, "registration page");
+        //console.log(response.data.data, "registration page");
       })
       .catch(error => {
-        console.log(error, "from reg catch");
+        //console.log(error, "from reg catch");
         toast.error("Internal server error");
       });
 

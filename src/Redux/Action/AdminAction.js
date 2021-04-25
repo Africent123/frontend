@@ -1,5 +1,6 @@
-import axios from "axios";
+
 import * as types from "../Constants/actionTypes";
+import axiosIntance from "../../helpers/axios"
 
 const fetchingCpSuccess = data => {
   return {
@@ -13,6 +14,14 @@ const fetchingCpError = message => {
     type: types.FETCHING_CP_USERS_FAIL,
     message
   };
+};
+
+export const loginCpSuccess = message => {
+  return { type: types.LOGIN_CPUSER_SUCCESS, message };
+};
+
+export const loginCpError = error => {
+  return { type: types.LOGIN_CPUSER_ERROR, error };
 };
 
 const UserRegisterCpSuccess = data => {
@@ -87,8 +96,8 @@ const fetchingUsersError = message => {
 
 export const fetchingContentProviders = () => {
   return dispatch => {
-    return axios
-      .get("https://kannywoodtv.live/api/cp/allusers")
+    return axiosIntance
+      .get(`/api/cp/allusers`)
       .then(response => {
         return dispatch(fetchingCpSuccess(response.data));
       })
@@ -100,15 +109,34 @@ export const fetchingContentProviders = () => {
 
 export const fetchingUsers = () => {
   return dispatch => {
-    return axios
-      .get("https://kannywoodtv.live/api/user/allusers")
+    return axiosIntance
+      .get(`/api/cp/user/allusers`)
       .then(response => {
-        console.log(response);
+        //console.log(response);
         return dispatch(fetchingUsersSuccess(response.data));
       })
       .catch(error => {
-        console.log(error);
+        //console.log(error);
         return dispatch(fetchingUsersError(error));
+      });
+  };
+};
+
+export const login = (credentials, route) => {
+  //console.log(route, "the routes chnages")
+  return dispatch => {
+      //console.log(credentials.body)
+    let { email, password } = credentials.body;
+    //console.log("body of the request", credentials.body)
+    return axiosIntance
+      .post(`/api/cp/login`, { email, password })
+      .then(response => {
+        //console.log(response)
+        return dispatch(loginCpSuccess(response));
+      })
+      .catch(error => {
+        //console.log(error, "Error from Auth action")
+        return dispatch(loginCpError(error));
       });
   };
 };
@@ -116,8 +144,8 @@ export const fetchingUsers = () => {
 export const CpUserRegistration = userData => {
   return dispatch => {
     let { providerName, email, phoneNumber, password, password2 } = userData;
-    return axios
-      .post("https://kannywoodtv.live/api/cp/register", {
+    return axiosIntance
+      .post(`/api/cp/register`, {
         providerName,
         email,
         phoneNumber,
@@ -125,11 +153,11 @@ export const CpUserRegistration = userData => {
         password2
       })
       .then(response => {
-        console.log(response, "auth action");
+        //console.log(response, "auth action");
         return dispatch(UserRegisterCpSuccess(response));
       })
       .catch(error => {
-        console.log(error);
+        //console.log(error);
         return dispatch(UserRegisterCpFail(error));
       });
   };
@@ -137,8 +165,8 @@ export const CpUserRegistration = userData => {
 
 export const UserBlockCp = id => {
   return dispatch => {
-    return axios
-      .put(`https://kannywoodtv.live/api/cp/block/${id}`)
+    return axiosIntance
+      .put(`/api/cp/block/${id}`)
       .then(response => {
         return dispatch(UserBlockedCpSuccess(response));
       })
@@ -150,8 +178,8 @@ export const UserBlockCp = id => {
 
 export const unblockCp = id => {
   return dispatch => {
-    return axios
-      .put(`https://kannywoodtv.live/api/user/unblock/${id}`)
+    return axiosIntance
+      .put(`/api/cp/user/unblock/${id}`)
       .then(response => {
         return dispatch(unblocked_User_Success(response));
       })
@@ -165,8 +193,8 @@ export const unblockCp = id => {
 
 export const UserBlock = id => {
   return dispatch => {
-    return axios
-      .put(`https://kannywoodtv.live/api/user/block/${id}`)
+    return axiosIntance
+      .put(`/api/cp/user/block/${id}`)
       .then(response => {
         return dispatch(UserBlockedSuccess(response));
       })
@@ -178,8 +206,8 @@ export const UserBlock = id => {
 
 export const unblockUser = id => {
   return dispatch => {
-    return axios
-      .put(`https://kannywoodtv.live/api/user/unblock/${id}`)
+    return axiosIntance
+      .put(`/api/cp/user/unblock/${id}`)
       .then(response => {
         return dispatch(unblocked_User_Success(response));
       })

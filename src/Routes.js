@@ -53,7 +53,7 @@ const AppRouter = ({auth,tokenname,Component,path, ...rest}) =>{
   if(auth){
     //get token from local storage
     var authfromstorage = localStorage.getItem(tokenname);
-    console.log(path, "Route path")
+    //console.log(path, "Route path")
     if(authfromstorage){
      return <Route {...rest} render= {renderProps => (<Component />) } />
     }else{
@@ -79,7 +79,7 @@ class Routes extends React.Component {
     try {
       const payload = decode(token);
       if(payload.exp < Date.now() / 1000) {
-        console.log(payload.exp)
+        //console.log(payload.exp)
         return false;
       }
       else{

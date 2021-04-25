@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import {
   MDBRow,
   MDBCol,
@@ -52,10 +51,10 @@ class RegisterPage extends React.Component {
               })
             : toast.error(response.message.data.message);
         }
-        console.log(response.message.data, "registration page");
+        //console.log(response.message.data, "registration page");
       })
       .catch(error => {
-        console.log(error, "from reg catch");
+        //console.log(error, "from reg catch");
         toast.error("Internal server error");
       });
   };

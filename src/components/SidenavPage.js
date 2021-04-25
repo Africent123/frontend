@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBNav, MDBNavLink, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBNav, MDBNavLink, MDBCol } from "mdbreact";
 
 class SidenavPage extends Component {
 state = {

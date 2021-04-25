@@ -62,7 +62,7 @@ const FooterLink = props => {
               
              
                 <li className="list-unstyled">
-                  Customercare@kannywoodtv.live
+                  Customercare@kannywoodtv.com.ng
                 </li>
                
                 
@@ -72,7 +72,7 @@ const FooterLink = props => {
           <MDBRow className="justify-content-center pt-5">
         <div className="  footer-copyright text-center py-3">
           <MDBContainer fluid>
-            &copy; {new Date().getFullYear()} Copyright: <a href="kannywood.com" className="white-text">kannywoodtv.live </a>
+            &copy; {new Date().getFullYear()} Copyright: <a href="kannywood.com" className="white-text">kannywoodtv.com.ng </a>
           </MDBContainer>
         </div>
         </MDBRow>

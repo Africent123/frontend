@@ -7,11 +7,10 @@ import {
   MDBCard,
   MDBCardBody
 } from "mdbreact";
-import axios from "axios";
 import "./HomePage.css";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { login } from "../Redux/Action/AuthAction";
+import { login } from "../Redux/Action/AdminAction";
 import { toast } from "react-toastify";
 
 class CpLoginPage extends React.Component {
@@ -42,9 +41,9 @@ class CpLoginPage extends React.Component {
     this.props.actions
       .login({ body }, "cp")
       .then(response => {
-        console.log(response.message.data.success, "ooo");
+        //console.log(response.message.data.success, "ooo");
         if (response.message.data.success) {
-          console.log(response.message.data.success, "---d");
+          //console.log(response.message.data.success, "---d");
           this.setState({ loading: false });
           // toast.success("Authenticated")
           if (response.message.data.isCp && !response.message.data.isBlocked) {
@@ -55,7 +54,7 @@ class CpLoginPage extends React.Component {
             toast.error("Your account is blocked contact the Administrator");
           }
         } else {
-          console.log(response);
+          //console.log(response);
           toast.error("Incorrect login credentials");
         }
       })
