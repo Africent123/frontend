@@ -11,7 +11,7 @@ const CustomTab = ({ children }) => (
 CustomTab.tabsRole = 'Tab'; // Required field to use your custom Tab
 
 const MovietabsPage = (props) => (
-  <Tabs className="pt-4">
+  <Tabs className="pt-0">
     <TabList>
       <Tab>About Movie</Tab>
       <Tab>Movie Cast</Tab>
@@ -20,14 +20,15 @@ const MovietabsPage = (props) => (
     </TabList>
 
     <TabPanel>
-      <p>{props.movie.description}
+      <p>
+        {props.movie.description}
       </p>
      
     </TabPanel>
     <TabPanel>
       <p>
         <ul>
-          <li>Adam Zango</li>
+          <li> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</li>
           <li>Hadiza Gabon</li>
         </ul>
       </p>

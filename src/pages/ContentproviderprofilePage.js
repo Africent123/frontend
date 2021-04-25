@@ -1,8 +1,8 @@
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import SidenavPage from "./../components/SidenavPage";
-import axios from "axios";
 import decode from "jwt-decode";
+import axiosIntance from "../helpers/axios";
 
 class ContentproviderprofilePage extends React.Component {
   constructor(props) {
@@ -33,20 +33,20 @@ class ContentproviderprofilePage extends React.Component {
     const token = localStorage.getItem("cptoken");
     const payload = decode(token);
     const id = payload.userId;
-    console.log(this.state.id);
+    //console.log(this.state.id);
 
     const { name, email, phoneNumber, providerName } = this.state;
-    console.log(this.state);
+    //console.log(this.state);
     this.setState({ loading: true });
-    axios
-      .put(`https://kannywoodtv.live/api/cp/profile/edit/${id}`, {
+    axiosIntance
+      .put(`/api/cp/profile/edit/${id}`, {
         name,
         email,
         phoneNumber,
         providerName
       })
       .then(result => {
-        console.log(result.data);
+        //console.log(result.data);
         if (!result.data.success) {
           this.setState({ SuccessMessage: result.data });
           // this.setState({SuccessMessage: []})

@@ -1,12 +1,12 @@
 import React from "react";
-import axios from "axios";
 import decode from "jwt-decode";
-import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { MDBRow, MDBCol,MDBContainer} from "mdbreact";
 import {bindActionCreators} from "redux";
 import {GetProfileDetail} from "../Redux/Action/ManageProfileAction.js"
 import {connect} from "react-redux";
 import FooterLink from "./../components/FooterLink";
+import axiosIntance from "../helpers/axios";
 
 
 class ProfilePage extends React.Component {
@@ -22,20 +22,20 @@ class ProfilePage extends React.Component {
     this.setState({loading: true})
     const token = localStorage.getItem('token');
       const payload = decode(token);
-      console.log(payload)
+      //console.log(payload)
       const id = payload.userId
-      console.log(id)
+      //console.log(id)
       this.props.actions.getDetails(id).then(res => {
-        console.log(res, "Yee")
+        //console.log(res, "Yee")
       })
       .catch(err => {
         console.log(err, "Err ----")
       })
-    axios.get(`https://kannywoodtv.live/api/user/profile/${id}`)
+      axiosIntance.get(`/api/user/profile/${id}`)
   .then((result) => {
-    console.log(result.data)
+    //console.log(result.data)
      this.setState({data: result.data, loading: false})
-     console.log(this.state.data)
+     //console.log(this.state.data)
   })
   }
 
@@ -64,7 +64,7 @@ checkAuth () {
 
   render() {
     
-    console.log("Current props check", this.props)
+    //console.log("Current props check", this.props)
     const isAuth = this.checkAuth()
     return (
       <>
@@ -74,8 +74,8 @@ checkAuth () {
     
           <MDBRow className="py-5">
             {this.state.loading && 
-               <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+               <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             }
           <MDBCol md="4" className="mb-md-0 mb-5 mx-auto text-justify">

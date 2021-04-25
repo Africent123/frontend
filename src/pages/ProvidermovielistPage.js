@@ -9,8 +9,8 @@ import {
 } from "mdbreact";
 import ProvidermovielistNavPage from "./../components/ProvidermovielistNavPage";
 import SidenavPage from "./../components/SidenavPage";
-import axios from "axios";
 import decode from "jwt-decode";
+import axiosIntance from "../helpers/axios";
 
 class ProvidermovielistPage extends React.Component {
   state = {
@@ -25,10 +25,10 @@ class ProvidermovielistPage extends React.Component {
     this.setState({
       loading: true
     });
-    axios
-      .get(`https://kannywoodtv.live/api/movies/all/${id}`)
+    axiosIntance
+      .get(`/api/movies/all/${id}`)
       .then(result => {
-        console.log(result.data)
+        //console.log(result.data)
         this.setState({
           movies: result.data,
           loading: false
@@ -40,8 +40,8 @@ class ProvidermovielistPage extends React.Component {
   }
 
   handleDelete = movie => {
-    axios
-      .delete(`https://kannywoodtv.live/api/movies/delete/${movie._id}`)
+    axiosIntance
+      .delete(`/api/movies/delete/${movie._id}`)
       .then(result => {
         console.log("Delete response", result);
       });
@@ -51,8 +51,8 @@ class ProvidermovielistPage extends React.Component {
     const token = localStorage.getItem("cptoken");
     const payload = decode(token);
     const id = payload.userId;
-    axios.get(`https://kannywoodtv.live/api/movies/all/${id}`).then(result => {
-      console.log(result.data, "here")
+    axiosIntance.get(`/api/movies/all/${id}`).then(result => {
+      //console.log(result.data, "here")
       this.setState({ movies: result.data });
     });
   }

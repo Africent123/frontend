@@ -1,20 +1,13 @@
 import React from "react";
-import axios from "axios";
 import decode from "jwt-decode";
 import { Player } from 'video-react';
 
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardImg,
-  CardFooter,
-  CardText,
-  Row,
-  Col,
-
+  Row
 } from "reactstrap";
+import axios from "../helpers/axios";
 
 class WatchMovies extends React.Component {
 
@@ -23,38 +16,38 @@ class WatchMovies extends React.Component {
 
  
     const {movie} = this.props.location.state
-    console.log(movie._id)
-    console.log(this.refs.player)
+    //console.log(movie._id)
+    //console.log(this.refs.player)
     const token = localStorage.getItem('token');
     const payload = decode(token)
-    console.log(payload)
+    //console.log(payload)
     
   }
   handleDelete = e => {
-    console.log(this.refs.player.play())
+    //console.log(this.refs.player.play())
     
   }
   handleD = e => {
     const token = localStorage.getItem('token');
     const payload = decode(token)
     const {movie} = this.props.location.state;
-    console.log(payload.userId)
-    console.log(movie._id)
+    //console.log(payload.userId)
+    //console.log(movie._id)
     const userId = payload.userId
     const movieId = movie._id;
 
 
-    axios.put(`https://kannywoodtv.live/api/movies/views/${movieId}`)
+    axios.put(`/api/movies/views/${movieId}`)
     .then((result) => {
-      console.log(result)
+      //console.log(result)
     })
     .catch((err) => {
       console.log(err)
     })
 
-    axios.post('https://kannywoodtv.live/api/watched', {userId, movieId})
+    axios.post(`/api/watched`, {userId, movieId})
     .then((result) => {
-      console.log(result)
+      //console.log(result)
     })
     .catch((err) => {
       console.log(err)
@@ -83,7 +76,7 @@ class WatchMovies extends React.Component {
                   preload="auto"
                   playsInline
                   poster="/assets/bg5.jpg"
-                  src={`https://kannywoodtv.live/api/files/${movie.filename}`}
+                  src={`/api/files/${movie.filename}`}
                   position="center"
                   LoadingSpinner
                   onEnded={this.handleD}

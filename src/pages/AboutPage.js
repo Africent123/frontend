@@ -117,8 +117,7 @@ class HomePage extends React.Component {
       </MDBContainer>
 
 
-<FooterLink
-         title="Footer"/>
+      <FooterLink title="Footer"/>
 
     </>
 

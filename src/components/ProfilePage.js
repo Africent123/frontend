@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBRow, MDBCol, MDBCard, MDBAvatar, MDBCardBody, MDBIcon, MDBBtn,MDBContainer} from "mdbreact";
+import { MDBRow, MDBCol, MDBIcon, MDBBtn,MDBContainer} from "mdbreact";
 import FooterLink from "./../components/FooterLink";
 
 
@@ -44,8 +44,9 @@ class ProfilePage extends React.Component {
           </MDBContainer>
           <FooterLink
          title="Footer"/>
-    </>
-  );
+      </>
+    );
+  };
 };
 
 export default ProfilePage;

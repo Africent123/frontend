@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 import decode from "jwt-decode";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import {Link, Redirect } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchingMovies } from "../Redux/Action/MoviesActions";
@@ -17,6 +16,7 @@ import {
 } from "mdbreact";
 import FooterLink from "./../components/FooterLink";
 import MovielistNavPage from "./../components/MovielistNavPage";
+import axiosIntance from "../helpers/axios";
 
 class MovielistPage extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class MovielistPage extends React.Component {
     this.props.actions
       .Movies()
       .then(data => {
-        console.log(data, "Redux");
+        //console.log(data, "Redux");
       })
       .catch(err => {
         console.log(err);
@@ -55,7 +55,7 @@ class MovielistPage extends React.Component {
     try {
       const payload = decode(token);
       if (payload.exp < Date.now() / 1000) {
-        console.log(payload.exp);
+        //console.log(payload.exp);
         return false;
       } else {
         return true;
@@ -67,13 +67,14 @@ class MovielistPage extends React.Component {
   }
 
   render() {
-    console.log(this.props, "here");
+    //console.log(this.props, "here");
     const isAuth = this.checkAuth();
     const imgStyle = {
       width: "300px",
       height: "200px"
     };
     return (
+      
       <>
         {!isAuth && <Redirect to="/login" />}
         <MDBContainer className="pt-4">
@@ -82,14 +83,14 @@ class MovielistPage extends React.Component {
         <MDBContainer className="pt-4">
           <MDBRow className="py-5">
             {this.state.loading && (
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             )}
             <MDBCol className="col-lg-12 ">
               <MDBRow className="py-5">
-                {this.props.Movies.map(movie => (
-                  <MDBCol className="col-lg-2 col-md-6 col-sm-6">
+                {this.props.Movies.map((movie, index )=> (
+                  <MDBCol key={index} className="col-lg-2 col-md-6 col-sm-6">
                     <MDBCard
                       className="movielist-cards"
                       onClick={() => {
@@ -105,7 +106,7 @@ class MovielistPage extends React.Component {
                         <MDBCardImage
                           className="img-fluid"
                           style={imgStyle}
-                          src={`https://kannywoodtv.live/api/files/thumbnail/${movie.thumbnail}`}
+                          src={`/api/files/thumbnail/${movie.thumbnail}`}
                           waves
                         />
                         <MDBCardBody>
@@ -137,8 +138,10 @@ class MovielistPage extends React.Component {
   }
 }
 
+
+
 const mapStateToProps = (state, ownProps) => {
-  console.log("original", state);
+  //console.log("original", state);
   return {
     Movies: state.Movies,
     role: state.Auth

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import decode from "jwt-decode";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import { bindActionCreators } from "redux";
@@ -33,7 +32,7 @@ class EditprofilePage extends React.Component {
     const payload = decode(token);
     const uploadedByUser = payload.userId;
     const id = payload.userId;
-    console.log(this.state.id);
+    //console.log(this.state.id);
 
     const { name, email, phoneNumber } = this.state;
     let data = { name, email, phoneNumber };

@@ -520,14 +520,7 @@ const UserpaymentPage = () => {
           </MDBCard>
         </MDBCol>
       </MDBRow>
-
-     
-
       
-
-     
-
-     
     </MDBContainer>
   );
 };

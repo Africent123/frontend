@@ -1,6 +1,7 @@
-import axios from "axios";
+
 import * as types from "../Constants/actionTypes";
 import { type } from "os";
+import axiosIntance from "../../helpers/axios";
 
 export const moviesFetched = Movies => {
   return {
@@ -26,12 +27,12 @@ export const beginFetching = () => {
 export const fetchingMovies = (data) => {
     return dispatch => {
         dispatch(beginFetching(true))
-        return axios.get("https://kannywoodtv.live/api/movies/all").then(response => {
-            console.log(response)
+        return axiosIntance.get(`/api/movies/all`).then(response => {
+            //console.log(response)
             return dispatch(moviesFetched(response.data))
         })
         .catch(error => {
-            console.log(error)
+            //console.log(error)
             return dispatch(moviesFetchedError(error))
         })
     }

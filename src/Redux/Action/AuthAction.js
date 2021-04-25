@@ -1,6 +1,6 @@
-import axios from "axios";
-
+import axiosIntance from "../../helpers/axios"
 import * as types from "../Constants/actionTypes";
+
 
 export const loginSuccess = message => {
   return { type: types.LOGIN_SUCCESS, message };
@@ -26,39 +26,41 @@ export const notAuthenticated = message => {
   return {type: types.NOT_AUTHENTICATED, message}
 }
 
+//.post(`/${route}/login`, { email, password })
+
 export const login = (credentials, route) => {
-  console.log(route, "the routes chnages")
+  //console.log(route, "the routes chnages")
   return dispatch => {
-      console.log(credentials.body)
+      //console.log(credentials.body)
     let { email, password } = credentials.body;
-    console.log("body of the request", credentials.body)
-    return axios
-      .post(`https://kannywoodtv.live/api/${route}/login`, { email, password })
+    //console.log("body of the request", credentials.body)
+    return axiosIntance
+      .post(`/api/user/login`, { email, password })
       .then(response => {
-        console.log(response)
+        //console.log(response)
         return dispatch(loginSuccess(response));
       })
       .catch(error => {
-        console.log(error, "Error from Auth action")
+        //console.log(error, "Error from Auth action")
         return dispatch(loginError(error));
       });
   };
 };
 
 export const Authencation = (token) => {
-  console.log(token, "****")
+  //console.log(token, "****")
   return dispatch => {
-    console.log(token, "#####")
+    //console.log(token, "#####")
       return {type: types.AUTHENTICATED, payload:token}
   }
 }
 
 export const registration = userData => {
-  console.log(userData, "from reg");
+  //console.log(userData, "from reg");
   return dispatch => {
     let { name, email, phoneNumber, password, password2 } = userData;
-    return axios
-      .post("https://kannywoodtv.live/api/user/register", {
+    return axiosIntance
+      .post(`/api/user/register`, {
         name,
         email,
         phoneNumber,
@@ -66,11 +68,11 @@ export const registration = userData => {
         password2
       })
       .then(response => {
-        console.log(response, "auth action");
+        //console.log(response, "auth action");
         return dispatch(registrationSuccess(response));
       })
       .catch(error => {
-        console.log(error);
+        //console.log(error);
         return dispatch(registrationError(error));
       });
   };

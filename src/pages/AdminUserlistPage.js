@@ -21,7 +21,7 @@ class ProviderslistPage extends React.Component {
   componentDidMount() {
     this.props.actions.Admin.fetchingUsers()
       .then(data => {
-        console.log(data, "Redux");
+        //console.log(data, "Redux");
       })
       .catch(err => {
         console.log(err);
@@ -144,7 +144,7 @@ class ProviderslistPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("original state is empty ", state);
+  //console.log("original state is empty ", state);
   return {
     Admin: state.Admin,
     role: state.Auth

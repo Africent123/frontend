@@ -41,7 +41,7 @@ const PlansPage = (props) => {
         'lorem ipsum dolors': 'Lorem ipsum dolorss',
         'lorem ipsum': 'Lorem ipsum dolor',
         'lorem': 'Lorem ipsum dolor',
-        'lorem': ' ipsum dolor',
+        'lorem i': ' ipsum dolor',
         'lore': 'Lorem ipsum dolor'
       },
       {
@@ -49,7 +49,7 @@ const PlansPage = (props) => {
         'lorem ipsum dolor': 'Lorem ipsum dolor',
         'lorem ipsum': 'Lorem ipsum dolor',
         'lorem': 'Lorem ipsum dolor',
-        'lorem': 'Lorem ipsum dolor',
+        'lorems': 'Lorem ipsum dolor',
         'lore': 'Lorem ipsum dolor'
       },
       {
@@ -57,7 +57,7 @@ const PlansPage = (props) => {
         'lorem ipsum dolor': 'Lorem ipsum dolor',
         'lorem ipsum': 'Lorem ipsum dolor',
         'lorem': 'Lorem ipsum dolor',
-        'lorem': 'Lorem ipsum dolor',
+        'loremh': 'Lorem ipsum dolor',
         'lore': 'Lorem ipsum dolor'
       },
       {
@@ -65,7 +65,7 @@ const PlansPage = (props) => {
         'lorem ipsum dolor': 'Lorem ipsum dolor',
         'lorem ipsum': 'Lorem ipsum dolor',
         'lorem': 'Lorem ipsum dolor',
-        'lorem': 'Lorem ipsum dolor',
+        'loremj': 'Lorem ipsum dolor',
         'lore': 'Lorem ipsum dolor'
       }
     ]

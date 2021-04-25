@@ -1,6 +1,7 @@
-import axios from "axios";
+
 import * as types from "../Constants/actionTypes";
 import decode from "jwt-decode";
+import axiosIntance from "../../helpers/axios";
 
 
 
@@ -36,8 +37,8 @@ export const EdtingProfileError = (message) => {
 
 export const GetProfileDetail = (id) => {
     return dispatch => {
-        return axios.get(`https://kannywoodtv.live/api/user/profile/${id}`).then(response => {
-            console.log(response)
+        return axiosIntance.get(`/api/user/profile/${id}`).then(response => {
+            //console.log(response)
           return dispatch(FetchingProfileSuccess(response.data))
       })
       .catch(error => {
@@ -49,7 +50,7 @@ export const GetProfileDetail = (id) => {
 export const EditProfile = (data, id) => {
     return dispatch => {
         const { name, email, phoneNumber } = data
-        return axios.put(`https://kannywoodtv.live/api/user/profile/edit/${id}`, {
+        return axiosIntance.put(`/api/user/profile/edit/${id}`, {
           name,
           email,
           phoneNumber
